@@ -24,10 +24,12 @@ var table =
 
 function handleMovie(type) {
 
+    var watched = ($("#watched").val() == true) ? 1 : 0 ;
+
     var obj = {
         movieId:     $("#movieId").val(),
         title:       $("#title").val(),
-        watched:     $("#watched").val()
+        watched:     watched
     };
 
     console.log(obj);
@@ -118,6 +120,7 @@ function showMovieModal(format, data) {
             $.each(data, function (key, value) {
                 $('#addMovie').find("input[id='" + key + "']").val(value);
             });
+            initCheckbox();
             // initialize title and buttons
             $('#modalLabel').html('Edit movie');
             $('#movieDeleteButton').show();
@@ -130,6 +133,10 @@ function showMovieModal(format, data) {
             $(':input', '#addMovie')
                 .not(':button, :submit, :reset')
                 .val('');
+            $("#watched").val(0);
+            initCheckbox();
+
+
 
             // initialize title and buttons
             $('#modalLabel').html('Add new movie');
@@ -141,4 +148,26 @@ function showMovieModal(format, data) {
 
     // show modal
     $("#movieModal").modal('toggle');
+}
+
+$('#watchedCheckbox').on('click', function () {
+    if( $("#watched").val() === 0 ){
+        $("#watched").val("1");
+    }else{
+        $("#watched").val("0");
+    }
+});
+
+function initCheckbox(){
+    // Function to check/uncheck the checkbox based on the hidden field (#watched)'s value
+    // The unchecking is not yet working.
+    // (might be bootstrap issue)
+    //
+    if( $("#watched").val() === 0 ){
+        $("watchedCheckbox").removeClass("active");
+        console.log("should be unchecked");
+    }else{
+        $("watchedCheckbox").addClass("active");
+        console.log("should be checked");
+    }
 }

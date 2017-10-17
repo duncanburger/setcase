@@ -30,10 +30,16 @@ public class MovieController {
         return movie;
     }
 
+    @RequestMapping(value = "/api/movies/", method = RequestMethod.PUT)
+    public Movie modifyMovie(@Valid @RequestBody Movie movie) {
+
+        movieRepository.save(movie);
+        return movie;
+    }
     @RequestMapping(value = "/api/movies/", method = RequestMethod.DELETE)
     public Movie deleteMovie(@Valid @RequestBody Movie movie) {
 
-        movieRepository.save(movie);
+        movieRepository.delete(movie);
         return movie;
     }
 

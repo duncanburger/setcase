@@ -10,8 +10,6 @@ $("#button_movies").click(function(){
 });
 
 
-
-
 // Toaster config
 toastr.options = {
     "closeButton": false,

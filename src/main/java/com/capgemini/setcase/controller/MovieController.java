@@ -24,7 +24,14 @@ public class MovieController {
     }
 
     @RequestMapping(value = "/api/movies/", method = RequestMethod.POST)
-    public Movie process(@Valid @RequestBody Movie movie) {
+    public Movie addMovie(@Valid @RequestBody Movie movie) {
+
+        movieRepository.save(movie);
+        return movie;
+    }
+
+    @RequestMapping(value = "/api/movies/", method = RequestMethod.DELETE)
+    public Movie deleteMovie(@Valid @RequestBody Movie movie) {
 
         movieRepository.save(movie);
         return movie;

@@ -23,9 +23,11 @@ public class InitController {
     @RequestMapping(value = "/api/init" , method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Movie> movieList() {
-        Movie movie = new Movie("Movie title 1");
+        Movie movie = new Movie("The Lion King");
         movieRepository.save(movie);
-        movie = new Movie("Movie title 2");
+        movie = new Movie("Snow White");
+        movieRepository.save(movie);
+        movie = new Movie("Winnie the Pooh!");
         movieRepository.save(movie);
         return movieRepository.findAll();
     }

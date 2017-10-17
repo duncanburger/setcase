@@ -4,7 +4,14 @@ var table =
         "columns": [
             { "data": "movieId" },
             { "data": "title"},
-            { "data": "watched" }
+            { "data": "watched",
+                render: function ( data ) {
+                    if(data == "0"){
+                        return "no";
+                    }else{
+                        return "yes";
+                    }
+                }}
         ],
         "columnDefs": [
             {
@@ -152,7 +159,7 @@ function showMovieModal(format, data) {
 }
 
 $('#watchedCheckbox').on('click', function () {
-    if( $("#watched").val() === 0 ){
+    if( $("#watched").val() === "0" ){
         $("#watched").val("1");
     }else{
         $("#watched").val("0");
@@ -164,7 +171,7 @@ function initCheckbox(){
     // The unchecking is not yet working.
     // (might be bootstrap issue)
     //
-    if( $("#watched").val() === 0 ){
+    if( $("#watched").val() == "0" ){
         $("watchedCheckbox").removeClass("active");
         console.log("should be unchecked now");
     }else{

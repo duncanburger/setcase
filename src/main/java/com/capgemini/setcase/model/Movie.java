@@ -11,14 +11,20 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer movieId;
-    @Length(max = 25, min = 1, message = "Surname must be between 1 and 25 characters.")
+    private Integer movieId; // Integer, so a null check can be made.
+    @Length(max = 50, min = 1, message = "Title must be between 1 and 50 characters.")
     private String title;
-    @Length(max = 25, min = 1, message = "Name must be between 1 and 25 characters.")
-    private String name;
+    private int watched; // no boolean to have more statusses in future.
+        // 0 --> unwatched (default)
+        // 1 --> watched
 
 
     public Movie() {
+    }
+
+    public Movie(String title) {
+        this.title = title;
+        this.watched = 0;
     }
 
     public Integer getMovieId() {
@@ -37,12 +43,12 @@ public class Movie {
         this.title = title;
     }
 
-    public String getName() {
-        return name;
+    public int getWatched() {
+        return watched;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWatched(int watched) {
+        this.watched = watched;
     }
 
     @Override

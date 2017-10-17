@@ -6,28 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
+
 import static com.capgemini.setcase.utils.ErrorMapping.mapErrorFields;
 
+// Controller only for populating the repositories for demo purposes.
 
 @RestController
-public class MovieController {
+public class InitController {
 
     @Autowired
     private MovieRepository movieRepository;
 
-    @RequestMapping(value = "/api/movies/" , method = RequestMethod.GET)
+    @RequestMapping(value = "/api/init" , method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Movie> movieList() {
-        return movieRepository.findAll();
-    }
-
-    @RequestMapping(value = "/api/movies/", method = RequestMethod.POST)
-    public Movie process(@Valid @RequestBody Movie movie) {
-
+        Movie movie = new Movie("Movie title 1");
         movieRepository.save(movie);
-        return movie;
+        movie = new Movie("Movie title 2");
+        movieRepository.save(movie);
+        return movieRepository.findAll();
     }
 
 

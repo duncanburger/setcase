@@ -120,7 +120,7 @@ function showMovieModal(format, data) {
             $.each(data, function (key, value) {
                 $('#addMovie').find("input[id='" + key + "']").val(value);
             });
-            initCheckbox();
+
             // initialize title and buttons
             $('#modalLabel').html('Edit movie');
             $('#movieDeleteButton').show();
@@ -134,7 +134,7 @@ function showMovieModal(format, data) {
                 .not(':button, :submit, :reset')
                 .val('');
             $("#watched").val(0);
-            initCheckbox();
+
 
 
 
@@ -146,7 +146,8 @@ function showMovieModal(format, data) {
             break;
     }
 
-    // show modal
+    // init checkbox & show modal
+    initCheckbox();
     $("#movieModal").modal('toggle');
 }
 
@@ -165,9 +166,9 @@ function initCheckbox(){
     //
     if( $("#watched").val() === 0 ){
         $("watchedCheckbox").removeClass("active");
-        console.log("should be unchecked");
+        console.log("should be unchecked now");
     }else{
         $("watchedCheckbox").addClass("active");
-        console.log("should be checked");
+        console.log("should be checked now");
     }
 }

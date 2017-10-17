@@ -1,5 +1,6 @@
 package com.capgemini.setcase.controller;
 
+import com.capgemini.setcase.controller.dto.DashboardDTO;
 import com.capgemini.setcase.model.Movie;
 import com.capgemini.setcase.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,17 @@ public class MovieController {
         return movie;
     }
 
+    // Dashboard statistics on movies
+    @RequestMapping(value = "/api/movies/dashboard" , method = RequestMethod.GET)
+    @ResponseBody
+    public DashboardDTO movieDashboard() {
+
+        int unwatched   = movieRepository.countByWatched(0);
+        int watched     = movieRepository.countByWatched(1);
+        DashboardDTO dashboardDTO = new DashboardDTO(watched, unwatched);
+
+        return dashboardDTO;
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

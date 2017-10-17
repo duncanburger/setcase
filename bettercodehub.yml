@@ -1,0 +1,8 @@
+exclude:
+- /src/main/resources/public/.*
+- /src/test/java/com/capgemini/setcase/SetcaseApplicationTests.java
+component_depth: 1
+languages:
+- java
+- javascript
+- script
